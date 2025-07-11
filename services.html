@@ -12,6 +12,8 @@
     main { max-width: 900px; margin: 20px auto; }
     h1, h2 { color: #004d40; }
     ul { list-style: disc inside; }
+    li { cursor: pointer; }
+    li:hover { color: #00796b; }
   </style>
 </head>
 <body>
@@ -26,17 +28,26 @@
 
   <main>
     <h2>Our Services</h2>
-    <ul>
-      <li><strong>Health Insurance:</strong> Comprehensive medical coverage for individuals and families.</li>
-      <li><strong>Life Insurance:</strong> Secure your loved ones’ future with customizable life policies.</li>
-      <li><strong>Disability Insurance:</strong> Protect your income in case of illness or injury.</li>
-      <li><strong>Wealth Protection Plans:</strong> Safeguard your assets and investments.</li>
-      <li><strong>Business Insurance:</strong> Tailored solutions for small to medium enterprises.</li>
+    <ul id="servicesList">
+      <li>Health Insurance</li>
+      <li>Life Insurance</li>
+      <li>Disability Insurance</li>
+      <li>Wealth Protection Plans</li>
+      <li>Business Insurance</li>
     </ul>
   </main>
 
   <footer>
     <p>&copy; 2025 Health and Wealth First</p>
   </footer>
+
+  <!-- JavaScript: Click message on service -->
+  <script>
+    document.querySelectorAll("#servicesList li").forEach(item => {
+      item.addEventListener("click", () => {
+        alert("You clicked: " + item.textContent);
+      });
+    });
+  </script>
 </body>
 </html>
