@@ -31,7 +31,108 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
+<!-- Chatbot Styles -->
+<style>
+  #chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00796b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+  }
 
+  #chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: white;
+    border: 2px solid #00796b;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+    overflow: hidden;
+  }
+
+  #chat-log {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  #chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chat-input input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    font-size: 14px;
+  }
+
+  #chat-input button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<!-- Chatbot HTML -->
+<div id="chat-window">
+  <div id="chat-log"></div>
+  <div id="chat-input">
+    <input type="text" id="userInput" placeholder="Ask me something..." />
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</div>
+<button id="chat-icon" onclick="toggleChat()">💬</button>
+
+<!-- Chatbot Script -->
+<script>
+  function toggleChat() {
+    const chatWindow = document.getElementById("chat-window");
+    chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if (!message) return;
+
+    const log = document.getElementById("chat-log");
+    log.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+
+    let reply = "I'm not sure how to answer that.";
+
+    if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
+      reply = "Hi there! I'm HealthBot. How can I help you today?";
+    } else if (message.toLowerCase().includes("services")) {
+      reply = "We offer health, life, disability, and business insurance. Visit the Services page for more.";
+    } else if (message.toLowerCase().includes("contact")) {
+      reply = "You can call us at 631-575-2349 or use the Contact page to send a message.";
+    } else if (message.toLowerCase().includes("insurance")) {
+      reply = "Yes! We specialize in health, life, and income protection insurance.";
+    }
+
+    log.innerHTML += `<p><strong>HealthBot:</strong> ${reply}</p>`;
+    input.value = "";
+    log.scrollTop = log.scrollHeight;
+  }
+</script>
   <main>
     <section class="hero">
       <h2>Protecting Your Health and Financial Future</h2>
